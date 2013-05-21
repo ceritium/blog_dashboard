@@ -74,7 +74,7 @@ module BlogDashboard
       }
     end
 
-    test "should return # if post_public_path_expresion isn´t setted" do
+    test "should return # if post_public_path_expresion is not setted" do
       BlogDashboard.configure do |config|
         config.post_public_path_expresion = nil
       end
