@@ -7,12 +7,12 @@ require "blog_dashboard/version"
 Gem::Specification.new do |s|
   s.name        = "blog_dashboard"
   s.version     = BlogDashboard::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
+  s.authors     = ["Fourmach", "José Galisteo Ruiz"]
+  s.email       = ["ceritium@gmail.com"]
+  s.homepage    = "http://fourmach.com"
   s.summary     = "BlogDashboard is a mountable blog dashboard for Rails apps with Mongodb as backend."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.13"
