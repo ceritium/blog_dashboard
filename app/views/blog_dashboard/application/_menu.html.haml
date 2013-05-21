@@ -1,0 +1,27 @@
+#navbar.navbar.navbar-inverse
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to blog_dashboard_root_path, class: 'brand', "data-no-turbolink" => true do
+        Blog
+
+
+      .nav-collapse.collapse
+        %ul.nav
+
+          %li.divider-vertical
+
+          %li
+            = link_to "Posts", posts_path
+
+          %li
+            = link_to "Categories", categories_path
+
+          %li
+            = link_to 'Comments', comments_path
+
+

@@ -1,0 +1,42 @@
+= semantic_form_for([post]) do |f|
+  .row
+    .span9
+      = f.inputs do
+        = f.input :title
+        = f.input :body, as: :text, input_html: {class: 'redactor'}
+
+    .span3.sidebar
+      .well
+        %h3 Publish
+        - if post.draft?
+          = button_tag 'keep draft', class: 'btn', value: 'draft'
+
+        / - if post.persisted?
+        /   = link_to 'preview', '#', class: 'btn'
+
+        %p
+          = f.inputs do
+            = f.input :published_at_string, as: :string, append: '<i></i>'.html_safe, input_html: {'data-format' => 'yyyy/MM/dd hh:mm:ss', class: 'span2'},wrapper_html: {class: 'datetimepicker'}
+
+        .row
+          .span1
+            - if post.persisted?
+              = link_to 'destroy', post_path(post), method: :delete, confirm: 'Are you sure?', class: 'text-error'
+
+          .span1
+            - if post.draft?
+              = button_tag "publish", class: 'btn btn-primary', value: 'published'
+            - else
+              = button_tag "update", class: 'btn btn-primary', value: 'published'
+
+
+      .well
+        %h3 Categories
+        = f.inputs do
+          = f.input :categories, as: :check_boxes
+
+      .well
+        %h3 Author
+        = f.inputs do
+          = f.input :author_type, as: :hidden, value: current_user.class
+          = f.input :author, collection: eval("#{current_user.class}.all")

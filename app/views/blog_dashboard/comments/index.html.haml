@@ -1,0 +1,29 @@
+- if @post.present?
+  - title "Comments on: #{link_to @post.title, edit_post_path(@post)}".html_safe
+- else
+  - title "Comments"
+
+%table.table
+  %thead
+    %tr
+      %th Comment
+      %th Author
+      %th Post
+      %th Date
+      %th Actions
+  %tbody
+    - @comments.each do |comment|
+      %tr
+        %td= comment.body
+        %td
+          - if comment.website.present?
+            = link_to comment.name, comment.website, target: '_blank'
+          - else
+            = comment.name
+          %br
+          = comment.email
+        %td= link_to comment.post.title, comment.post.public_path
+        %td= l(comment.created_at, format: :short)
+
+        %td
+          = link_to 'edit', [:edit, comment], class: 'btn'

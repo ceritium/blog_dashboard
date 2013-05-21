@@ -1,0 +1,32 @@
+- title "Posts"
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Author
+      %th Comments
+      %th Categories
+      %th Date
+      %th Actions
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td= post.title
+        %td
+          = post.author
+        %td= link_to post.comments.count, comments_path(post_id: post)
+        %td= post.categories.join(', ')
+        %td
+          - if post.published_at
+            Published:
+            = l(post.published_at, format: :short)
+          - else
+            Draft:
+            = l(post.updated_at, format: :short)
+
+        %td
+          = link_to 'edit', [:edit, post], class: 'btn'
+
+.pull-right
+  = link_to 'new post', [:new, :post], class: 'btn'
