@@ -43,7 +43,7 @@ class User
   end
 
 end
-```ruby
+```
 
 
 
