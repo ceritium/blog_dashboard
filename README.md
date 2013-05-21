@@ -1,5 +1,7 @@
 # BlogDashboard (Alpha)
 
+[![Build Status](https://travis-ci.org/fourmach/blog_dashboard.png?branch=master)](https://travis-ci.org/fourmach/blog_dashboard)
+
 BlogDashboard is a mountable blog dashboard for Rails apps with Mongodb as backend.
 
 ## Goals
