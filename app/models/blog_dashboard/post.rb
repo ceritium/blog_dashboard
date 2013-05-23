@@ -3,12 +3,28 @@ module BlogDashboard
     include Mongoid::Document
     include Mongoid::Timestamps
 
+
     STATES = ['draft', 'published']
 
     field :title, type: String
     field :body, type: String
     field :published_at, type: DateTime
     field :state, type: String, default: STATES[0]
+
+
+    if BlogDashboard::configuration.i18n_support
+      include Mongoid::Globalize
+      translates_post = BlogDashboard::configuration.translates[:post]
+      if translates_post.present?
+        translates do
+          field :title                      if translates_post[:title]
+          field :body                       if translates_post[:body]
+          field :published_at               if translates_post[:published_at]
+          field :state                      if translates_post[:state]
+          fallbacks_for_empty_translations! if translates_post[:fallbacks_for_empty_translations]
+        end
+      end
+    end
 
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
     belongs_to :author, polymorphic: true

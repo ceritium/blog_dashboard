@@ -20,10 +20,18 @@ module BlogDashboard
     # example: /posts/:id.html
     attr_accessor :post_public_path_expresion
 
+
+    # I18n support
+    attr_accessor :i18n_support
+
+    attr_accessor :translates
+
     def initialize
       @inline_main_app_named_routes = false
       @current_user_method          = :current_user
       @authentication_method        = :authenticate_user!
+      @i18n_support                 = false
+      @translates                   = {}
     end
 
   end
