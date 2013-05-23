@@ -6,8 +6,6 @@
       = content_for?(:title) ? (yield(:title) + " - Admin") : "Admin"
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %meta{:content => "Fourmach.com", :name => "author"}
-    %link{rel: "shortcut icon", type: 'image/icon', href: asset_path('favicon.ico')}
-
     = stylesheet_link_tag "blog_dashboard/application", media: nil
 
     / Le HTML5 shim, for IE6-8 support of HTML5 elements

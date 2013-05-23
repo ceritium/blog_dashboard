@@ -1,5 +1,6 @@
 require 'jquery-rails'
 require 'mongoid'
+require 'mongoid_globalize'
 require "haml-rails"
 require "twitter-bootstrap-rails"
 require 'formtastic'
@@ -7,6 +8,7 @@ require 'formtastic-bootstrap'
 require 'kaminari'
 require "carrierwave"
 require "carrierwave/mongoid"
+
 require 'redactor-rails'
 require "mini_magick"
 
