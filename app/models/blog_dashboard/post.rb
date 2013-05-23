@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module BlogDashboard
   class Post
     include Mongoid::Document
@@ -81,7 +83,7 @@ module BlogDashboard
 
     def public_path
       if BlogDashboard::configuration.post_public_path_expresion
-        BlogDashboard::configuration.post_public_path_expresion.gsub(":id", id)
+        BlogDashboard::configuration.post_public_path_expresion.gsub(":id", id.to_s)
       else
         "#"
       end

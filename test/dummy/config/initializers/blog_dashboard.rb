@@ -5,7 +5,7 @@ BlogDashboard.configure do |config|
     post: {
       title: true,
       body: true,
-      relevant: :title
+      fallbacks_for_empty_translations: true
     }
   }
 end
