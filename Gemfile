@@ -15,7 +15,6 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-gem 'mongoid_globalize'
 
 ## Dummy
 gem 'devise'

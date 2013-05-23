@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
 
   s.add_dependency 'mongoid'
+  s.add_dependency 'mongoid_globalize'
   s.add_dependency 'bson_ext'
   s.add_dependency "haml-rails"
 
