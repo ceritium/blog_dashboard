@@ -5,7 +5,21 @@
         = f.input :title
         = f.input :body, as: :text, input_html: {class: 'redactor'}
 
+
+
+
+
+
     .span3.sidebar
+
+      - if post.persisted? && BlogDashboard::Post.translatable?
+        .well
+          %h3 Languages
+          %ul.nav.nav-tabs.nav-stacked.nav-pills
+            - I18n.available_locales.each do |locale|
+              %li{class: locale == post.translation.locale ? 'active' : nil}
+                = link_to "#{locale} - #{post.check_translation_for(locale)}", "?locale=#{locale}"
+
       .well
         %h3 Publish
         - if post.draft?

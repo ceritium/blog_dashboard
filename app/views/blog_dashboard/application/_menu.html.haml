@@ -25,3 +25,17 @@
             = link_to 'Comments', comments_path
 
 
+
+
+        %ul.nav.pull-right
+          %li.divider-vertical
+          %li
+            .btn-group
+              %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = I18n.locale
+                %span.caret
+              %ul.dropdown-menu
+                - I18n.available_locales.select{|x| x != I18n.locale }.each do |locale|
+                  %li= link_to locale, "?locale=#{locale}"
+
+

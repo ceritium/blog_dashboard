@@ -4,7 +4,8 @@ BlogDashboard.configure do |config|
   config.translates = {
     post: {
       title: true,
-      body: true
+      body: true,
+      relevant: :title
     }
   }
 end
