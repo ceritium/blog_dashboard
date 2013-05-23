@@ -11,8 +11,6 @@ module BlogDashboard
 
     include BlogDashboard::Translatable
 
-
-
     STATES = ['draft', 'published']
 
     field :title, type: String
@@ -23,9 +21,7 @@ module BlogDashboard
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
     belongs_to :author, polymorphic: true
 
-
-    has_many :comments, class_name: "BlogDashboard::Comment"
-
+    has_many :comments, class_name: "BlogDashboard::Comment", dependent: :delete
 
     validates :title, presence: true
     validates :state, inclusion: { in: STATES }
