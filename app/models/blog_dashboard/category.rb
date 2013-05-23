@@ -3,6 +3,14 @@ module BlogDashboard
     include Mongoid::Document
     include Mongoid::Timestamps
 
+    def self.translatable_key
+      :post
+    end
+
+    include BlogDashboard::Translatable
+
+
+
     field :name, type: String
     validates :name, presence: true
 

@@ -11,6 +11,10 @@ module BlogDashboard
       @show_title
     end
 
+    def custom_label(object, field, title = nil)
+      "#{title || field.to_s.humanize} #{object.translatable?(field) ? '<abbr title="Translatable"><i class="icon-flag"></i></abbr> ' : nil}".html_safe
+    end
+
     # Can search for named routes directly in the main app, omitting
     # the "main_app." prefix
     def method_missing method, *args, &block

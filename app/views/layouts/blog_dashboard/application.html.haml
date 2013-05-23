@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %title
-      = content_for?(:title) ? (yield(:title) + " - Admin") : "Admin"
+      = content_for?(:title) ? (yield(:title).html_safe + " - Admin") : "Admin"
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     %meta{:content => "Fourmach.com", :name => "author"}
     = stylesheet_link_tag "blog_dashboard/application", media: nil

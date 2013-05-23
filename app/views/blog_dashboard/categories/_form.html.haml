@@ -1,5 +1,15 @@
 = semantic_form_for(category) do |f|
-  = f.inputs do
-    = f.input :name, input_html: {autofocus: true}
-  = f.actions do
-    = f.button :save, class: 'btn btn-large'
+  .row
+    .span9
+      = f.inputs do
+        = f.input :name, input_html: {autofocus: true}, label: custom_label(category, :title)
+      = f.actions do
+        = f.button :save, class: 'btn btn-large'
+
+    .span3.sidebar
+      .well
+        %h3 Languages
+        %ul.nav.nav-tabs.nav-stacked.nav-pills
+          - I18n.available_locales.each do |locale|
+            %li{class: locale == category.translation.locale ? 'active' : nil}
+              = link_to "#{locale} - #{category.check_translation_for(locale)}", "?locale=#{locale}"

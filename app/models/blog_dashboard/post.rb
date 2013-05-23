@@ -5,6 +5,13 @@ module BlogDashboard
     include Mongoid::Document
     include Mongoid::Timestamps
 
+    def self.translatable_key
+      :post
+    end
+
+    include BlogDashboard::Translatable
+
+
 
     STATES = ['draft', 'published']
 
@@ -12,43 +19,6 @@ module BlogDashboard
     field :body, type: String
     field :published_at, type: DateTime
     field :state, type: String, default: STATES[0]
-
-
-    def self.translatable?
-      BlogDashboard::configuration.i18n_support && BlogDashboard::configuration.translates[:post].values.include?(true)
-    end
-
-    if translatable?
-      def self.translates_post
-        BlogDashboard::configuration.translates[:post]
-      end
-
-      def translates_post
-        Post.translates_post
-      end
-
-      include Mongoid::Globalize
-      translates_post = Post.translates_post
-      translates do
-        field :title                      if translates_post[:title]
-        field :body                       if translates_post[:body]
-        field :published_at               if translates_post[:published_at]
-        field :state                      if translates_post[:state]
-        fallbacks_for_empty_translations! if translates_post[:fallbacks_for_empty_translations]
-      end
-
-      def check_translation_for(locale)
-
-        translation = translations.select{|x| locale.to_s == x.locale.to_s }[0]
-        if translates_post[:relevant]
-          translation.try(translates_post[:relevant])
-        else
-          translation.present? ? '√' : 'X'
-        end
-      end
-
-    end
-
 
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
     belongs_to :author, polymorphic: true
