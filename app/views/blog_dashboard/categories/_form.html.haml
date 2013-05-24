@@ -3,7 +3,6 @@
     .span9
       = f.inputs do
         = f.input :name, input_html: {autofocus: true}, label: custom_label(category, :title)
-        / = f.input :slug, label: custom_label(category, :slug)
       = f.actions do
         = f.button :save, class: 'btn btn-large'
 
@@ -12,5 +11,5 @@
         %h3 Languages
         %ul.nav.nav-tabs.nav-stacked.nav-pills
           - I18n.available_locales.each do |locale|
-            %li{class: locale == category.translation.locale ? 'active' : nil}
+            %li{class: locale == I18n.locale ? 'active' : nil}
               = link_to "#{locale} - #{category.check_translation_for(locale)}", edit_category_path(category.id, locale: locale)

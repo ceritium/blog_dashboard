@@ -8,16 +8,21 @@ module BlogDashboard
 
     STATES = ['draft', 'published']
 
-    field :title, type: String
-    field :body, type: String
-    field :published_at, type: DateTime
-    field :state, type: String, default: STATES[0]
-    slug :title,  localize: true
+    if BlogDashboard::configuration.i18n_support &&
+      translates_post = BlogDashboard::configuration.translates[:post]
 
+      fields = translates_post[:fields]
+    end
 
     def self.translatable_key
       :post
     end
+
+    field :title, type: String, localize: fields.include?(:title)
+    field :body, type: String, localize: fields.include?(:body)
+    field :published_at, type: DateTime
+    field :state, type: String, default: STATES[0]
+    slug :title,  localize: fields.include?(:slug), history: true
 
     include BlogDashboard::Translatable
 

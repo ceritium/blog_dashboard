@@ -14,7 +14,7 @@ gemspec
 # your gem to rubygems.org.
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
 
 # gem 'mongoid_slug', path: '/Users/ceritium/tardis/mongoid-slug'
 ## Dummy

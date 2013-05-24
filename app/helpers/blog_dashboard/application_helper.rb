@@ -12,6 +12,7 @@ module BlogDashboard
     end
 
     def custom_label(object, field, title = nil)
+      p object.translatable?(field)
       "#{title || field.to_s.humanize} #{(BlogDashboard::configuration.i18n_support && object.translatable?(field)) ? '<abbr title="Translatable"><i class="icon-flag"></i></abbr> ' : nil}".html_safe
     end
 

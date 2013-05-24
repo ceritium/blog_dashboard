@@ -1,6 +1,5 @@
 require 'jquery-rails'
 require 'mongoid'
-require 'mongoid_globalize'
 require 'mongoid_slug'
 
 require "haml-rails"

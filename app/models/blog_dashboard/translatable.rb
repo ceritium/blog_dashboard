@@ -15,20 +15,7 @@ module BlogDashboard
         BlogDashboard::configuration.translates[self.translatable_key]
       end
 
-      if translatable?
-        include Mongoid::Globalize
-        translates_object = self.translates_object
-        translates do
-          if translates_object[:fields]
-            translates_object[:fields].each do |element|
-              field element
-            end
-          end
-          fallbacks_for_empty_translations! if translates_object[:fallbacks_for_empty_translations]
-        end
-      end
     end
-
 
     def translates_object
       self.class.translates_object
@@ -39,15 +26,15 @@ module BlogDashboard
     end
 
     def translatable?(field)
-      self.class.translatable? && translates_object[field]
+      self.class.translatable? && translates_object[:fields] && translates_object[:fields].include?(field)
     end
 
     def check_translation_for(locale)
-      translation = translations.select{|x| locale.to_s == x.locale.to_s }[0]
-      if translates_object[:relevant]
-        translation.try(translates_object[:relevant])
+      relevant = translates_object[:relevant]
+      if relevant && translates_object[:fields].include?(relevant) && self.attributes[relevant.to_s]
+        self.attributes[relevant.to_s][locale.to_s]
       else
-        translation.present? ? '√' : 'X'
+        # translation.present? ? '√' : 'X'
       end
     end
 

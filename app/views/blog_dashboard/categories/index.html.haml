@@ -4,18 +4,11 @@
   %thead
     %tr
       %th Name
-      - if BlogDashboard::Category.translatable?
-        %th Translations
-
       %th Actions
   %tbody
     - @categories.each do |category|
       %tr
         %td= category.name
-        - if BlogDashboard::Category.translatable?
-          %td
-            = category.translateds.map(&:to_s).join(', ')
-
         %td
           = link_to 'edit', [:edit, category], class: 'btn'
           = link_to 'destroy', category_path(category), method: :delete, confirm: 'Are you sure?', class: 'btn btn-danger'

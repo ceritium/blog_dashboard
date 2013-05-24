@@ -12,7 +12,7 @@
           %h3 Languages
           %ul.nav.nav-tabs.nav-stacked.nav-pills
             - I18n.available_locales.each do |locale|
-              %li{class: locale == post.translation.locale ? 'active' : nil}
+              %li{class: locale == I18n.locale ? 'active' : nil}
                 = link_to "#{locale} - #{post.check_translation_for(locale)}", edit_post_path(post.id, locale: locale)
 
       .well
