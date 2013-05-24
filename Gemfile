@@ -16,5 +16,8 @@ gemspec
 # To use debugger
 # gem 'debugger'
 
+# gem 'mongoid_slug', path: '/Users/ceritium/tardis/mongoid-slug'
 ## Dummy
+
+# gem 'mongoid_globalize', path: '/Users/ceritium/tardis/mongoid_globalize'
 gem 'devise'

@@ -63,7 +63,7 @@ module BlogDashboard
     test "should parse as valid DateTime the string if is published" do
       @post.state = 'published'
       @post.published_at_string = "2015/10/21 16:04:00"
-      assert_equal Time.new(2015, 10, 21, 16, 04, 00), @post.published_at
+      assert_equal DateTime.new(2015, 10, 21, 16, 04, 00), @post.published_at
     end
 
     test "should not raise I18n::ArgumentError" do

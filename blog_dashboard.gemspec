@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "jquery-rails"
 
-  s.add_dependency 'mongoid'
+  s.add_dependency 'mongoid', '3.1.4'
   s.add_dependency 'mongoid_globalize'
+  s.add_dependency 'mongoid_slug'
   s.add_dependency 'bson_ext'
   s.add_dependency "haml-rails"
 

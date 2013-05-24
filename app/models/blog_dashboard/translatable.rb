@@ -19,10 +19,11 @@ module BlogDashboard
         include Mongoid::Globalize
         translates_object = self.translates_object
         translates do
-          field :title                      if translates_object[:title]
-          field :body                       if translates_object[:body]
-          field :published_at               if translates_object[:published_at]
-          field :state                      if translates_object[:state]
+          if translates_object[:fields]
+            translates_object[:fields].each do |element|
+              field element
+            end
+          end
           fallbacks_for_empty_translations! if translates_object[:fallbacks_for_empty_translations]
         end
       end

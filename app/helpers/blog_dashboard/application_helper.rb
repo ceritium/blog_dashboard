@@ -12,7 +12,7 @@ module BlogDashboard
     end
 
     def custom_label(object, field, title = nil)
-      "#{title || field.to_s.humanize} #{object.translatable?(field) ? '<abbr title="Translatable"><i class="icon-flag"></i></abbr> ' : nil}".html_safe
+      "#{title || field.to_s.humanize} #{(BlogDashboard::configuration.i18n_support && object.translatable?(field)) ? '<abbr title="Translatable"><i class="icon-flag"></i></abbr> ' : nil}".html_safe
     end
 
     # Can search for named routes directly in the main app, omitting

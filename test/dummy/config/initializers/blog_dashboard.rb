@@ -4,12 +4,13 @@ BlogDashboard.configure do |config|
   config.i18n_support = true
   config.translates = {
     post: {
-      title: true,
-      body: false,
-      fallbacks_for_empty_translations: true
+      fields: [:title, :body],
+      fallbacks_for_empty_translations: true,
+      relevant: :title
     },
-    category:{
-      name: true,
+    category: {
+      fields: [:name],
+      relevant: :name,
       fallbacks_for_empty_translations: true
     }
 

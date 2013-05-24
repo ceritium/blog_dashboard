@@ -4,12 +4,7 @@ module BlogDashboard
   class Post
     include Mongoid::Document
     include Mongoid::Timestamps
-
-    def self.translatable_key
-      :post
-    end
-
-    include BlogDashboard::Translatable
+    include Mongoid::Slug
 
     STATES = ['draft', 'published']
 
@@ -17,6 +12,15 @@ module BlogDashboard
     field :body, type: String
     field :published_at, type: DateTime
     field :state, type: String, default: STATES[0]
+    slug :title,  localize: true
+
+
+    def self.translatable_key
+      :post
+    end
+
+    include BlogDashboard::Translatable
+
 
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
     belongs_to :author, polymorphic: true

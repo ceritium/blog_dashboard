@@ -4,14 +4,14 @@ module BlogDashboard
     include Mongoid::Timestamps
 
     def self.translatable_key
-      :post
+      :category
     end
 
     include BlogDashboard::Translatable
 
 
-
     field :name, type: String
+
     validates :name, presence: true
     has_and_belongs_to_many :posts, class_name: "BlogDashboard::Post"
 
