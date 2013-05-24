@@ -3,6 +3,7 @@
     .span9
       = f.inputs do
         = f.input :title, label: custom_label(post, :title)
+        = f.input :custom_slug, label: custom_label(post, :slug)
         = f.input :body, as: :text, input_html: {class: 'redactor'}, label: custom_label(post, :body)
 
 

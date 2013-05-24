@@ -8,23 +8,17 @@ module BlogDashboard
 
     STATES = ['draft', 'published']
 
-    if BlogDashboard::configuration.i18n_support &&
-      translates_post = BlogDashboard::configuration.translates[:post]
 
-      fields = translates_post[:fields]
-    end
-
-    def self.translatable_key
-      :post
-    end
-
-    field :title, type: String, localize: fields.include?(:title)
-    field :body, type: String, localize: fields.include?(:body)
-    field :published_at, type: DateTime
-    field :state, type: String, default: STATES[0]
-    slug :title,  localize: fields.include?(:slug), history: true
+    @@translatable_key = :post
+    @@slug_field = :title
 
     include BlogDashboard::Translatable
+
+
+    field :title, type: String, localize: @@fields.include?(:title)
+    field :body, type: String, localize: @@fields.include?(:body)
+    field :published_at, type: DateTime
+    field :state, type: String, default: STATES[0]
 
 
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
@@ -36,6 +30,7 @@ module BlogDashboard
     validates :state, inclusion: { in: STATES }
 
     after_save :set_published_at
+
 
 
     def draft?

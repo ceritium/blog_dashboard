@@ -2,7 +2,8 @@
   .row
     .span9
       = f.inputs do
-        = f.input :name, input_html: {autofocus: true}, label: custom_label(category, :title)
+        = f.input :name, input_html: {autofocus: true}, label: custom_label(category, :name)
+        = f.input :custom_slug, label: custom_label(category, :slug)
       = f.actions do
         = f.button :save, class: 'btn btn-large'
 
