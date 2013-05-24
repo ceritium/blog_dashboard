@@ -10,3 +10,5 @@ Gemfile.lock
 .rvmrc
 .DS_Store
 coverage
+.ruby-gemset
+.ruby-version
