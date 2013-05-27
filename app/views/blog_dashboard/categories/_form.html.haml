@@ -8,9 +8,10 @@
         = f.button :save, class: 'btn btn-large'
 
     .span3.sidebar
-      .well
-        %h3 Languages
-        %ul.nav.nav-tabs.nav-stacked.nav-pills
-          - I18n.available_locales.each do |locale|
-            %li{class: locale == I18n.locale ? 'active' : nil}
-              = link_to "#{locale} - #{category.check_translation_for(locale)}", edit_category_path(category.id, locale: locale)
+      - if category.persisted? && BlogDashboard::Post.translatable?
+        .well
+          %h3 Languages
+          %ul.nav.nav-tabs.nav-stacked.nav-pills
+            - I18n.available_locales.each do |locale|
+              %li{class: locale == I18n.locale ? 'active' : nil}
+                = link_to "#{locale} - #{category.check_translation_for(locale)}", edit_category_path(category.id, locale: locale)

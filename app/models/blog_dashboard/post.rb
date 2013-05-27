@@ -1,5 +1,4 @@
 # encoding: UTF-8
-
 module BlogDashboard
   class Post
     include Mongoid::Document
@@ -8,18 +7,15 @@ module BlogDashboard
 
     STATES = ['draft', 'published']
 
-
     @@translatable_key = :post
     @@slug_field = :title
-
     include BlogDashboard::Translatable
 
 
-    field :title, type: String, localize: @@fields.include?(:title)
-    field :body, type: String, localize: @@fields.include?(:body)
+    field :title, type: String, localize:  self.custom_fields.include?(:title)
+    field :body, type: String, localize:  self.custom_fields.include?(:body)
     field :published_at, type: DateTime
     field :state, type: String, default: STATES[0]
-
 
     has_and_belongs_to_many :categories, class_name: "BlogDashboard::Category"
     belongs_to :author, polymorphic: true
@@ -30,8 +26,6 @@ module BlogDashboard
     validates :state, inclusion: { in: STATES }
 
     after_save :set_published_at
-
-
 
     def draft?
       state == 'draft'

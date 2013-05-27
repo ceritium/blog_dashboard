@@ -29,7 +29,7 @@ module BlogDashboard
     def update
       get_category
       if @category.update_attributes(params[:category])
-        redirect_to edit_category_path(@category.id), notice: "Category updated"
+        redirect_to edit_category_path(@category), notice: "Category updated"
       else
         render 'edit'
       end

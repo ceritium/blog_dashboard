@@ -31,8 +31,43 @@ if ActiveSupport::TestCase.method_defined?(:fixture_path=)
 end
 
 require 'database_cleaner'
-DatabaseCleaner.strategy = :truncation
 
+
+def i18n_support_false
+  BlogDashboard.configure do |config|
+    config.i18n_support = false
+  end
+end
+
+def i18n_support_true
+  BlogDashboard.configure do |config|
+    config.i18n_support = true
+    config.translates = {
+      post: {
+        fields: [:title, :body, :slug],
+        fallbacks_for_empty_translations: true,
+        relevant: :title
+      },
+      category: {
+        fields: [:name, :slug],
+        relevant: :name,
+        fallbacks_for_empty_translations: true
+      }
+
+    }
+  end
+
+end
+
+class ActiveSupport::TestCase
+
+
+  def setup
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean!
+
+  end
+end
 
 class ActionController::TestCase
   include BlogDashboard::Engine.routes.url_helpers
