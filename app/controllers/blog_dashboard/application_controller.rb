@@ -1,6 +1,9 @@
 module BlogDashboard
   class ApplicationController < ::ApplicationController
 
+
+    private
+
     before_filter :set_locale
 
     def set_locale
@@ -12,11 +15,12 @@ module BlogDashboard
       { locale: I18n.locale }
     end
 
-    # before_filter :authenticate_user!
     helper_method :current_user, :blog_dashboard_conf
 
     def self.blog_dashboard_authenticate(options ={})
-      before_filter blog_dashboard_conf.authentication_method, options
+      if blog_dashboard_conf.authentication_method.present?
+        before_filter blog_dashboard_conf.authentication_method
+      end
     end
 
 

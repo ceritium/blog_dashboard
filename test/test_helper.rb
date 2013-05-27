@@ -20,6 +20,9 @@ require 'capybara/rails'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
+require 'mocha/setup'
+
+
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
@@ -65,12 +68,18 @@ class ActiveSupport::TestCase
   def setup
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean!
-
   end
 end
 
 class ActionController::TestCase
   include BlogDashboard::Engine.routes.url_helpers
+  include Devise::TestHelpers
+
+  def setup
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean!
+  end
+
 end
 
 class ActionDispatch::IntegrationTest

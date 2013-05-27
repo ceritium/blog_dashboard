@@ -16,7 +16,7 @@ module BlogDashboard
     def create
       @category = Category.new(params[:category])
       if @category.save
-        redirect_to edit_category_path(@category.id), notice: 'Category created'
+        redirect_to edit_category_path(@category), notice: 'Category created'
       else
         render 'new'
       end

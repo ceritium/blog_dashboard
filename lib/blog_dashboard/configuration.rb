@@ -24,6 +24,7 @@ module BlogDashboard
     # I18n support
     attr_accessor :i18n_support
 
+
     attr_accessor :translates
 
     def initialize

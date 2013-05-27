@@ -15,7 +15,7 @@
         %td= post.title
         %td
           = post.author
-        %td= link_to post.comments.count, comments_path(post_id: post)
+        %td= link_to post.comments.count, comments_path(post_id: post.id)
         %td= post.categories.join(', ')
         %td
           - if post.published_at

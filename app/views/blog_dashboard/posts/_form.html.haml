@@ -48,5 +48,5 @@
       .well
         %h3 Author
         = f.inputs do
-          = f.input :author_type, as: :hidden, value: current_user.class
+          = f.input :author_type, as: :hidden, input_html: { value: current_user.class}
           = f.input :author, collection: eval("#{current_user.class}.all")
