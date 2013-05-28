@@ -1,0 +1,8 @@
+Description:
+    Generate a basic initializer.
+
+Example:
+    rails generate blog_dashboard::install
+
+    This will create:
+        config/initializer/blog_dashboard.rb

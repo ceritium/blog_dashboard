@@ -2,7 +2,7 @@ module BlogDashboard
   class Configuration
 
     # The name of the before filter we'll call to authenticate the current user.
-    # Defaults to :login_required
+    # Defaults to :authenticate_user!
     attr_accessor :authentication_method
 
     # Should the routes of the main app be accessible without

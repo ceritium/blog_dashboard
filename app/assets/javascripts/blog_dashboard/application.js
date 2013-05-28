@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-datetimepicker
 //= require redactor-rails
+
 //= require_tree .
 
 $('.datetimepicker .input-append').datetimepicker();
