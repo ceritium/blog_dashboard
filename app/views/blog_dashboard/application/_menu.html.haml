@@ -34,7 +34,7 @@
               %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                 = I18n.locale
                 %span.caret
-              %ul.dropdown-menu
+              %ul.dropdown-menu.pull-right
                 - I18n.available_locales.select{|x| x != I18n.locale }.each do |locale|
                   %li= link_to locale, "?locale=#{locale}"
 

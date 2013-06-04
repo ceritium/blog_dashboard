@@ -88,7 +88,7 @@ module BlogDashboard
 
     test "should replace :id from post_public_path_expresion" do
       BlogDashboard.configure do |config|
-        config.post_public_path_expresion = '/blog/post/:id/show'
+        config.post_public_path_expresion = '/blog/post/:post_id/show'
       end
 
       assert_equal @post.public_path, "/blog/post/#{@post.id}/show"

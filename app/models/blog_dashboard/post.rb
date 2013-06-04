@@ -11,7 +11,6 @@ module BlogDashboard
     @@slug_field = :title
     include BlogDashboard::Translatable
 
-
     field :title, type: String, localize:  self.custom_fields.include?(:title)
     field :body, type: String, localize:  self.custom_fields.include?(:body)
     field :published_at, type: DateTime
@@ -21,6 +20,8 @@ module BlogDashboard
     belongs_to :author, polymorphic: true
 
     has_many :comments, class_name: "BlogDashboard::Comment", dependent: :delete
+
+    scope :published, where(:published_at.exists => true, state: 'published')
 
     validates :title, presence: true
     validates :state, inclusion: { in: STATES }
@@ -47,7 +48,7 @@ module BlogDashboard
 
     def public_path
       if BlogDashboard::configuration.post_public_path_expresion
-        BlogDashboard::configuration.post_public_path_expresion.gsub(":id", id.to_s)
+        BlogDashboard::configuration.post_public_path_expresion.gsub(":post_id", id.to_s)
       else
         "#"
       end

@@ -7,7 +7,7 @@ module BlogDashboard
     field :email, type: String
     field :body, type: String
     field :website, type: String
-
+    field :state, type: String, default: 'approved'
     belongs_to :post, class_name: "BlogDashboard::Post"
 
     STATES = ['approved', 'pending', 'spam', 'trashed']
@@ -19,6 +19,7 @@ module BlogDashboard
     EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
     before_validation :format_website
+    scope :approved, where(state: 'approved')
 
     validates :name, presence: true
     validates :email, presence: true, format: {with: EMAIL_REGEX, allow_blank: true }

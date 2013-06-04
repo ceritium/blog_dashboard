@@ -1,6 +1,7 @@
 BlogDashboard.configure do |config|
 
-  config.post_public_path_expresion = '/posts/:id'
+  config.post_public_path_expresion = '/blog/posts/:post_id'
+  # config.comment_public_path_expresion = '/blog/posts/:post_id#:comment_id'
   config.i18n_support = true
   config.translates = {
     post: {
@@ -16,3 +17,8 @@ BlogDashboard.configure do |config|
 
   }
 end
+
+
+Post = BlogDashboard::Post
+Category = BlogDashboard::Category
+Comment = BlogDashboard::Comment

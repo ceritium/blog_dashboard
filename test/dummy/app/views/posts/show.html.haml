@@ -1,6 +1,8 @@
-%h1= @post.title
+= render partial: 'post', locals: {post: @post}
 
-= @post.body.html_safe
+%section#comments
+  %header
+    %h3 Comments
+  = render partial: 'comment', collection: @post.comments.approved
 
-
-= link_to '< back', posts_path
+= render partial: 'new_comment', locals: {post: @post}
