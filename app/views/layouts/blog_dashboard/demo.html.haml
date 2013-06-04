@@ -1,0 +1,58 @@
+!!!
+%html{lang: I18n.locale}
+  %head
+    %meta{:charset => "utf-8"}
+    %title
+      = content_for?(:title) ? (yield(:title).html_safe + " - Blog") : "Blog"
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "Fourmach.com", :name => "author"}
+    = stylesheet_link_tag "blog_dashboard/application", media: nil
+
+    / Le HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    = csrf_meta_tag
+  %body{id: "#{controller.controller_name}-#{controller.action_name}"}
+    / = render 'menu'
+    #navbar.navbar
+      .navbar-inner
+        .container
+          = link_to demo_root_path, class: 'brand', "data-no-turbolink" => true do
+            Blog
+
+          %ul.nav.pull-right
+            %li.divider-vertical
+            %li
+              .btn-group
+                %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = I18n.locale
+                  %span.caret
+                %ul.dropdown-menu.pull-right
+                  - I18n.available_locales.select{|x| x != I18n.locale }.each do |locale|
+                    %li= link_to locale, "?locale=#{locale}"
+            %li
+              = link_to 'admin', blog_dashboard.blog_dashboard_root_path
+
+    .container
+      #flash
+        - flash.each do |key, value|
+          .alert{ :class => "alert-#{key}" }
+            = value
+
+      %h2= yield(:title)
+      .row
+        .span9
+          = yield
+
+        .span3
+          %section#categories
+            %header
+              %h3 Categories
+            %ul.nav.nav-tabs.nav-stacked
+              - BlogDashboard::Category.each do |category|
+                %li
+                  = link_to category.name, demo_posts_path(category_id: category)
+
+
+    = javascript_include_tag "blog_dashboard/application"

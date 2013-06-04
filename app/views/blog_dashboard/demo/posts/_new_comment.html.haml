@@ -1,0 +1,16 @@
+= semantic_form_for(BlogDashboard::Comment.new, url: create_comment_demo_post_path(post)) do |f|
+  = f.inputs name: 'New comment' do
+    .row
+      .span3
+        = f.input :name, input_html: {class: 'span3'}
+      .span3
+        = f.input :email, input_html: {class: 'span3'}
+      .span3
+        = f.input :website, input_html: {class: 'span3'}
+
+    .row
+      .span9
+        = f.input :body, as: :text, input_html: {class: 'span9'}
+  = f.actions do
+    = f.button 'send', class: 'btn'
+

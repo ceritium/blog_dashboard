@@ -1,0 +1,16 @@
+%article.post
+  %header
+    %h2= link_to post.title, demo_post_path(post)
+
+    - if post.published_at
+      %p.published_at
+        Published at
+        = l(post.published_at, format: :short)
+
+    - if post.categories.present?
+      under:
+      = post.categories.map{|category| link_to(category.name, demo_posts_path(category_id: category)) }.join(', ').html_safe
+
+
+  = post.body.html_safe
+

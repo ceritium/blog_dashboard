@@ -24,10 +24,14 @@ module BlogDashboard
     # I18n support
     attr_accessor :i18n_support
 
-
+    # Models and fields with i18n support
     attr_accessor :translates
 
+    # A simple blog to test the data.
+    attr_accessor :demo_blog
+
     def initialize
+      @demo_blog                    = true
       @inline_main_app_named_routes = false
       @current_user_method          = :current_user
       @authentication_method        = :authenticate_user!

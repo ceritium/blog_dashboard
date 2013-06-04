@@ -1,0 +1,14 @@
+%article.comment{id: comment.id}
+  %span.nick
+    By
+    - if comment.website
+      = link_to comment.name, comment.website
+    - else
+      = comment.name
+  %span.created_at
+    at
+    = link_to l(comment.created_at, format: :short), demo_post_path(comment.post, anchor: comment.to_param)
+
+  .body
+    = simple_format comment.body
+%hr/
