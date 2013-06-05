@@ -1,6 +1,7 @@
 module BlogDashboard
   class ApplicationController < ::ApplicationController
 
+    I18n.fallbacks[I18n.default_locale] = I18n.available_locales
 
     private
 

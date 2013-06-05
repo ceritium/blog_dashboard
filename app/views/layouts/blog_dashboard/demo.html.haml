@@ -22,6 +22,9 @@
             Blog
 
           %ul.nav.pull-right
+            %li
+              = link_to 'admin', blog_dashboard.blog_dashboard_root_path
+
             %li.divider-vertical
             %li
               .btn-group
@@ -31,8 +34,6 @@
                 %ul.dropdown-menu.pull-right
                   - I18n.available_locales.select{|x| x != I18n.locale }.each do |locale|
                     %li= link_to locale, "?locale=#{locale}"
-            %li
-              = link_to 'admin', blog_dashboard.blog_dashboard_root_path
 
     .container
       #flash

@@ -25,9 +25,10 @@
             = link_to 'Comments', comments_path
 
 
-
-
         %ul.nav.pull-right
+          - if blog_dashboard_conf.demo_blog
+            %li= link_to "demo", demo_root_path
+
           %li.divider-vertical
           %li
             .btn-group

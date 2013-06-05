@@ -3,12 +3,11 @@ BlogDashboard.configure do |config|
   # A simple blog to test the data on http://../demo
   # Can copy demo blog files to your application with:
   # $ rake blog_dashboard:demo
-  # config.demo_blog = false
+  config.demo_blog = true
 
   # Regular expresion for the public path of a post
   # accepted only :post_id as params
   # config.post_public_path_expresion = '/demo/posts/:post_id'
-
 
   # The name of the before filter we'll call to authenticate the current user.
   # Defaults to :authenticate_user!

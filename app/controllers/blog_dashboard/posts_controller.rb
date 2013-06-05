@@ -23,7 +23,7 @@ module BlogDashboard
       @post = Post.new(params[:post])
       @post.state = params[:button]
       if @post.save
-        redirect_to [:edit, @post], notice: 'Post created'
+        redirect_to edit_post_path(@post), notice: 'Post created'
       else
         render 'new'
       end
@@ -37,7 +37,7 @@ module BlogDashboard
       get_post
       @post.state = params[:button]
       if @post.update_attributes(params[:post])
-        redirect_to [:edit, @post], notice: 'Post updated'
+        redirect_to edit_post_path(@post), notice: 'Post updated'
       else
         render 'edit'
       end
